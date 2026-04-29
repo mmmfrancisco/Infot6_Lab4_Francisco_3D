@@ -1,7 +1,7 @@
-'use client';
+"use client"; // This MUST be the first line
 
-import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabaseClient'; 
+import { useState, useEffect } from 'react'; // Add this if it is missing
+import { supabase } from '../../lib/supabaseClient';
 import Link from 'next/link';
 import styles from '../components/AuthPage.module.css';
 
@@ -16,38 +16,46 @@ export default function LoginPage() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false); 
   const [activeManual, setActiveManual] = useState<string | null>(null);
+useEffect(() => {
+    // 1. Fetch user on initial load
+    const getUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user ?? null);
+    };
+    getUser();
 
-  useEffect(() => {
+    // 2. Listen for login/logout changes automatically
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    // 3. Fix the background scrolling
     if (activeManual) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'auto';
     }
-  }, [activeManual]);
 
-  useEffect(() => {
-    const checkUser = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session?.user && !isRedirecting) {
-        setUser(session.user);
-      } else {
-        setUser(null);
-      }
+    // Cleanup the listener when the page closes
+    return () => {
+      authListener.subscription.unsubscribe();
     };
-    checkUser();
-    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!isRedirecting) setUser(session?.user ?? null);
-    });
-    return () => authListener.subscription.unsubscribe();
-  }, [isRedirecting]);
+  }, [activeManual]);
 
   const handleSignUp = async () => {
     setError('');
     if (!fullName || !email || !password) { setError('Please fill in all fields.'); return; }
     setIsRedirecting(true);
     const { error: signUpError } = await supabase.auth.signUp({
-      email, password, options: { data: { full_name: fullName } },
+      email,
+      password,
+      options: {
+        data: {
+          full_name: fullName, // This saves the name to the user's profile
+        },
+      },
     });
+    
     if (signUpError) {
       setError(signUpError.message);
       setIsRedirecting(false);
@@ -200,9 +208,9 @@ export default function LoginPage() {
           </div>
 
           <div className={styles.dashboardContainer}>
-            <h1 className={styles.welcomeTitle}>
-              Hello and Welcome, {user.user_metadata?.full_name || 'User'}!
-            </h1>
+           <h1 className={styles.welcomeTitle}>
+  Hello and Welcome, {user?.user_metadata?.full_name || user?.user_metadata?.name || 'User'}!
+</h1>
             <p className={styles.welcomeSub}>You are successfully synchronized.</p>
             <div className={styles.manualGrid}>
               <div className={styles.manualCard} onClick={() => setActiveManual('supabase')}>
