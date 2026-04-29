@@ -1,0 +1,321 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* 3-color linear gradient */
+  background: linear-gradient(135deg, #c2eefb 0%, #eea6e8 50%, #d79aed 100%);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.glassCard {
+ background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 50%, #fbfbc2 100%);
+  backdrop-filter: blur(20px);
+  padding: 60px 45px 30px 45px;
+  border-radius: 35px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Neon Pink Input Fields */
+.inputField {
+  width: 100%; 
+  padding: 14px 14px 14px 45px; 
+  border-radius: 30px; 
+  border: 2px solid #ff79c6; 
+  background: rgba(255, 255, 255, 0.4); 
+  font-size: 14px; 
+  outline: none; 
+  box-sizing: border-box; 
+  color: #333;
+  box-shadow: 0 0 8px rgba(255, 121, 198, 0.3);
+  transition: all 0.3s ease;
+}
+
+.inputField:hover, .inputField:focus {
+  border-color: #f795c9;
+  box-shadow: 0 0 15px #ff1493, 0 0 30px rgba(255, 20, 147, 0.3);
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Neon LOGIN Button */
+.mainButton { 
+  width: 100%; 
+  padding: 14px; 
+  background: linear-gradient(135deg, #ef8ad2 0%, #f6f69a 100%);
+  color: rgb(255, 255, 255); 
+  border-radius: 30px; 
+  font-weight: bold; 
+  cursor: pointer; 
+  margin-top: 10px; 
+  margin-bottom: 15px;
+  border: 2px solid #ff79c6; 
+  box-shadow: 0 0 10px rgba(255, 121, 198, 0.4);
+  transition: all 0.3s ease;
+}
+
+.mainButton:hover {
+  background-color: #ff1493;
+  border-color: #ffffff;
+  box-shadow: 0 0 20px #ff1493, 0 0 40px rgba(255, 20, 147, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Neon Underline Links (Sign Up / Back to Home) */
+.toggleLink {
+  color: #fe8dc5; 
+  font-weight: bold; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.toggleLink:hover {
+  color: #ff1493;
+  text-decoration: underline;
+  text-shadow: 0 0 8px #ff1493;
+}
+
+.homeLink {
+  color: #929292; 
+  font-size: 11px; 
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.homeLink:hover {
+  color: #ff1493; /* Neon pink hover */
+  text-decoration: underline;
+  text-shadow: 0 0 5px #ff1493;
+}
+
+/* Feature: Pink Neon Notification Modal */
+.modalContent {
+  background: rgba(241, 130, 215, 0.95);
+  padding: 40px;
+  border-radius: 35px;
+  text-align: center;
+  border: 3px solid #ff1493; /* Neon border */
+  box-shadow: 0 0 25px rgba(255, 20, 147, 0.4);
+  max-width: 300px;
+}
+
+/* Modal and Dashboard */
+.modalOverlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(235, 216, 230, 0.7);
+  backdrop-filter: blur(15px);
+  display: flex; align-items: center; justify-content: center; z-index: 1000;
+}
+
+.modalContent {
+   background: linear-gradient(135deg, #d991f0 0%, #eca5c9 50%, #fbfbc2 100%); padding: 40px; border-radius: 30px; text-align: center;
+}
+
+
+.dashboardContainer {
+  /* Updated background to be slightly more vibrant */
+  background: rgba(250, 202, 243, 0.499); 
+  backdrop-filter: blur(20px);           /* Stronger blur for better glass effect */
+  padding: 60px 40px;
+  border-radius: 40px;
+  
+  /* NEON BORDER: Gives it a pink glow at the edges */
+  border: 4px solid rgb(250, 90, 157); 
+  
+  /* DUAL GLOW EFFECT: 
+     1. Standard shadow for depth
+     2. Pink neon glow for the "glow" effect */
+  box-shadow: 
+    0 15px 45px rgb(244, 127, 211),
+    0 0 25px rgba(240, 238, 236, 0.965), /* Soft outer pink glow */
+    inset 0 0 15px rgba(170, 65, 245, 0.842); /* Inner white shine */
+    
+  max-width: 1000px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  margin: 0 auto;
+  
+  /* Subtle transition if you want it to feel smoother */
+  transition: all 0.4s ease;
+}
+
+/* Optional: Subtle pulse effect on hover */
+.dashboardContainer:hover {
+  border-color: rgba(253, 63, 186, 0.987);
+  box-shadow: 
+    0 20px 40px rgba(225, 243, 126, 0.919),
+    0 0 35px rgba(244, 238, 241, 0.4);
+  transform: translateY(-5px);
+}
+
+/* The Welcome Title with Animation */
+.welcomeTitle {
+  color: rgb(248, 84, 174);
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  
+  /* CHANGED: Duration reduced to 0.5s for a faster blink */
+  animation: neonBlink 0.7s infinite alternate; 
+}
+/* Keyframes for the Blink Effect */
+@keyframes neonBlink {
+  0% { opacity: 1; text-shadow: 0 0 10px #f45dbf, 0 0 20px #e9f6fc, 0 0 30px #ff1493; }
+  100% { opacity: 1; text-shadow: 0 0 10px #fff, 0 0 25px #fff, 0 0 45px #f4ecf0; }
+}
+
+
+
+/* Optional: Subtle animation for the sub-text */
+.welcomeSub {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+.welcomeSub { color: rgb(68, 0, 121); font-size: 18px; }
+.navLink { color: white; text-decoration: none; font-size: 12px; font-weight: bold; cursor: pointer; }
+.navLink:hover { color: #ff1493; text-decoration: underline; text-shadow: 0 0 8px #ff1493; }
+
+/* --- Manual Grid Layout --- */
+.manualGrid {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+.manualCard {
+  background: linear-gradient(135deg, #8dd8f6 0%, #f6f69a 100%);
+  backdrop-filter: blur(15px);
+  padding: 30px 20px;
+  border-radius: 25px;
+  width: 280px;
+  border: 1px solid rgba(233, 5, 119, 0.914);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
+}
+
+.manualCard:hover {
+  transform: translateY(-12px);
+  border-color: #ff1493;
+  box-shadow: 0 15px 30px rgba(255, 20, 147, 0.3);
+  background: linear-gradient(135deg, #f3eef1 0%, #f69ad3 100%);
+}
+
+.manualCard h3 {
+  color: #ff1493;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.manualCard p {
+  color: #f11e6b;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* --- Scrollable Modal Styles --- */
+/* Ensure the overlay covers the screen and centers the modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px; /* Prevents modal from touching screen edges */
+}
+
+/* The Modal Container */
+.scrollableModal {
+  background: white;
+  padding: 5cqb;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 700px;
+
+  /* CRITICAL SCROLL FIX */
+  max-height: 80vh;    /* Limits height to 80% of the viewport */
+  overflow-y: auto;    /* Enables vertical scrolling inside the modal */
+  display: flex;       /* Helps with internal alignment */
+  flex-direction: column;
+  
+  position: relative;
+  border: 2px solid #ff1493;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Customizing the scrollbar to look cleaner */
+.scrollableModal::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollableModal::-webkit-scrollbar-thumb {
+  background: #ff1493; /* Pink to match your theme */
+  border-radius: 10px;
+}
+
+.scrollableModal::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 14px;
+}
+
+.scrollableModal::-webkit-scrollbar-thumb:hover {
+  background: #d40078;
+}
+
+/* Styling the steps inside */
+.stepsList {
+  width: 100%;
+}
+
+.stepItem {
+  background: #fff0f6;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border-left: 5px solid #ff1493;
+  font-size: 20px;
+}
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 22px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #ff1493;
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.closeBtn:hover {
+  transform: scale(1.2);
+}
+
+
+
