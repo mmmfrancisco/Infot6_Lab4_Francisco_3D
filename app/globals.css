@@ -24,3 +24,9 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* This removes the extra eye icon in Edge and Chrome */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}

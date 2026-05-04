@@ -188,10 +188,20 @@ useEffect(() => {
                 <span style={{position: 'absolute', left: '18px', top: '50%', transform: 'translateY(-50%)'}}>✉️</span>
                 <input type="email" placeholder="gmail" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.inputField} autoComplete="off" />
               </div>
+              
               <div style={{position: 'relative', marginBottom: '18px'}}>
                 <span style={{position: 'absolute', left: '18px', top: '50%', transform: 'translateY(-50%)'}}>🔒</span>
-                <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} className={styles.inputField} autoComplete="new-password" />
+                <input 
+  type={showPassword ? 'text' : 'password'} 
+  placeholder="password" 
+  value={password} 
+  onChange={(e) => setPassword(e.target.value)} 
+  className={styles.inputField} 
+  autoComplete="new-password" 
+/>
+                <span onClick={() => setShowPassword(!showPassword)} style={{position: 'absolute', right: '18px', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', fontSize: '18px'}}>{showPassword ? '👁️' : '🙈'}</span>
               </div>
+
               <button onClick={handleSignUp} className={styles.mainButton}>REGISTER</button>
               <p style={{fontSize: '12px', color: '#6a6a6a'}}>already have an account? <span onClick={() => setActiveForm('login')} className={styles.toggleLink}>LogIn</span></p>
             </>
